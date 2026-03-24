@@ -62,6 +62,9 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .tea-card:hover {
@@ -70,7 +73,6 @@
             background: rgba(212, 175, 55, 0.05);
         }
 
-        /* Float animation for stars/logo */
         .float {
             animation: floating 4s infinite ease-in-out;
         }
@@ -80,17 +82,25 @@
             50% { transform: translateY(-15px); }
         }
 
-        .custom-loader {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            border-top-color: var(--gold);
-            animation: spin 1s linear infinite;
+        /* Modal Styles */
+        .modal-overlay {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
         }
     </style>
 </head>
@@ -103,7 +113,6 @@
         <!-- Logo Display -->
         <div class="relative mb-8 float">
             <img src="logo.jpeg" alt="Tea on Wheels Logo" class="w-64 md:w-80 lg:w-96 rounded-full shadow-2xl border-4 border-[#D4AF37]/20">
-            <!-- Decorative Stars (SVG icons) -->
             <i class="fas fa-star absolute -top-4 -left-4 text-yellow-400 animate-ping"></i>
             <i class="fas fa-star absolute top-1/2 -right-8 text-yellow-200 opacity-50"></i>
         </div>
@@ -120,9 +129,12 @@
         <div class="mt-12 flex flex-col items-center">
             <p class="text-xs uppercase tracking-[0.3em] mb-4 opacity-50">Follow the Journey</p>
             <div class="flex space-x-6 text-2xl">
-                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fab fa-instagram"></i></a>
+                <!-- Instagram Icon triggers the QR Modal -->
+                <button onclick="toggleModal()" class="hover:text-amber-400 transition-colors cursor-pointer outline-none" title="Scan Instagram QR Code">
+                    <i class="fab fa-instagram"></i>
+                </button>
                 <a href="#" class="hover:text-amber-400 transition-colors"><i class="fab fa-facebook-p"></i></a>
-                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://wa.me/?text=Check%20out%20Tea%20on%20Wheels!%20Magic%20is%20brewing..." target="_blank" class="hover:text-amber-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
             </div>
         </div>
 
@@ -139,36 +151,38 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Shop Progress Card -->
+            
+            <!-- Shop Card -->
             <div class="tea-card rounded-2xl overflow-hidden p-4">
-                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-                    <!-- PLACEHOLDER FOR SHOP IMAGE -->
-                    <i class="fas fa-store text-5xl opacity-10 group-hover:scale-110 transition-transform"></i>
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-white font-medium">Shop Image Placeholder</div>
+                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 overflow-hidden group">
+                    <img src="store.jpeg" alt="The Shop" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <h3 class="text-xl font-bold mb-2 gold-text">The Shop</h3>
-                <p class="text-sm text-gray-400">Our physical hub is getting a makeover. Soon to be the heart of our operations.</p>
+                <p class="text-sm text-gray-400 leading-relaxed">Our physical hub is getting a makeover. Soon to be the heart of our operations.</p>
             </div>
 
-            <!-- Team Progress Card -->
+            <!-- Team Card -->
             <div class="tea-card rounded-2xl overflow-hidden p-4">
-                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 overflow-hidden">
-                    <img src="team.jpeg" alt="Our Team" class="w-full h-full object-cover">
+                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 overflow-hidden group">
+                    <img src="team.jpeg" alt="The Team" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110">
                 </div>
                 <h3 class="text-xl font-bold mb-2 gold-text">The Team</h3>
-                <p class="text-sm text-gray-400">Meet the passionate brewers behind the wheels. We're dedicated to the perfect cup.</p>
+                <p class="text-sm text-gray-400 leading-relaxed">Meet the passionate brewers behind the wheels. We're dedicated to the perfect cup.</p>
             </div>
 
-            <!-- Video Progress Card -->
+            <!-- Teaser Video Card -->
             <div class="tea-card rounded-2xl overflow-hidden p-4">
-                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
-                    <!-- PLACEHOLDER FOR VIDEO -->
-                    <i class="fas fa-play-circle text-5xl opacity-10 group-hover:scale-110 transition-transform"></i>
-                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-white font-medium text-center px-4">Video Teaser:<br>From Sketches to Steeping</div>
+                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 overflow-hidden relative group">
+                    <video class="w-full h-full object-cover" autoplay muted loop playsinline>
+                        <source src="teaser.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
                 </div>
-                <h3 class="text-xl font-bold mb-2 gold-text">Watch us grow</h3>
-                <p class="text-sm text-gray-400">A short clip of our journey from a dream to a moving reality.</p>
+                <h3 class="text-xl font-bold mb-2 gold-text">Teaser Video</h3>
+                <p class="text-sm text-gray-400 leading-relaxed">A short clip of our journey from a dream to a moving reality.</p>
             </div>
+
         </div>
     </section>
 
@@ -181,11 +195,38 @@
                 We've secured our primary location. While we are "on wheels," you can always find us parked at:
             </p>
             <div class="bg-white/5 p-8 rounded-3xl border border-white/10 inline-block">
-                <p class="text-2xl font-serif italic text-white">[Your Fixed Location Address Here]</p>
-                <p class="text-sm mt-4 text-gray-500 uppercase tracking-widest">Opening Hours To Be Announced</p>
+                <p class="text-2xl font-serif italic text-white text-center md:px-10 mb-6">Click below to find us on the map</p>
+                <a href="https://maps.app.goo.gl/hrJdGi7L7C3cfUxw9" target="_blank" class="inline-flex items-center space-x-3 bg-gold hover:bg-amber-500 text-dark-cocoa px-8 py-3 rounded-full font-bold transition-all transform hover:scale-105">
+                    <i class="fas fa-directions"></i>
+                    <span>Get Directions</span>
+                </a>
+                <p class="text-sm mt-6 text-gray-500 uppercase tracking-widest">Opening Hours To Be Announced</p>
             </div>
         </div>
     </section>
+
+    <!-- Modal Popup for QR Code -->
+    <div id="qrModal" class="modal-overlay fixed inset-0 z-50 flex items-center justify-center px-4 bg-black/80 backdrop-blur-md">
+        <div class="modal-content relative bg-neutral-900 border border-gold/30 p-8 md:p-12 rounded-[3rem] max-w-sm w-full text-center shadow-[0_0_50px_rgba(212,175,55,0.2)]">
+            <button onclick="toggleModal()" class="absolute top-6 right-6 text-gray-500 hover:text-gold transition-colors">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+
+            <h3 class="text-2xl font-bold mb-2 gold-text">Scan to Follow</h3>
+            <p class="text-xs text-gray-400 mb-8 uppercase tracking-widest">Join our Instagram Family</p>
+            
+            <div class="bg-white p-4 rounded-3xl inline-block shadow-xl">
+                <!-- QR Code updated with your specific Instagram link -->
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.instagram.com/teaonwheels._?igsh=MWkyaDFlOXRsajh4Ng==&color=1A120B" alt="Instagram QR Code" class="w-48 h-48">
+            </div>
+            
+            <div class="mt-8 flex items-center justify-center space-x-2 text-gold">
+                <i class="fab fa-instagram text-xl"></i>
+                <a href="https://www.instagram.com/teaonwheels._?igsh=MWkyaDFlOXRsajh4Ng==" target="_blank" class="font-medium hover:underline">@teaonwheels._</a>
+            </div>
+        </div>
+        <div class="absolute inset-0 -z-10" onclick="toggleModal()"></div>
+    </div>
 
     <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/5 text-center">
@@ -197,14 +238,32 @@
     </footer>
 
     <script>
-        // Smooth scroll for anchors
+        function toggleModal() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.toggle('active');
+            if (modal.classList.contains('active')) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
+        });
+
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && document.getElementById('qrModal').classList.contains('active')) {
+                toggleModal();
+            }
         });
     </script>
 </body>
