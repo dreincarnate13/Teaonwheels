@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tea on Wheels | Coming Soon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap');
+
+        :root {
+            --gold: #D4AF37;
+            --amber: #FFBF00;
+            --cream: #FFFDD0;
+            --dark-cocoa: #1A120B;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-cocoa);
+            color: var(--cream);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        .gold-gradient {
+            background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #B8860B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 70%);
+            filter: blur(40px);
+            z-index: -1;
+        }
+
+        .coming-soon-banner {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            backdrop-filter: blur(10px);
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        .tea-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tea-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        /* Float animation for stars/logo */
+        .float {
+            animation: floating 4s infinite ease-in-out;
+        }
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .custom-loader {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--gold);
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="selection:bg-yellow-700 selection:text-white">
+
+    <!-- Hero Section -->
+    <header class="relative min-h-screen flex flex-col items-center justify-center text-center px-4 overflow-hidden">
+        <div class="hero-glow top-1/4 left-1/2 -translate-x-1/2"></div>
+        
+        <!-- Logo Display -->
+        <div class="relative mb-8 float">
+            <img src="WhatsApp Image 2026-03-24 at 7.40.51 PM.jpeg" alt="Tea on Wheels Logo" class="w-64 md:w-80 lg:w-96 rounded-full shadow-2xl border-4 border-[#D4AF37]/20">
+            <!-- Decorative Stars (SVG icons) -->
+            <i class="fas fa-star absolute -top-4 -left-4 text-yellow-400 animate-ping"></i>
+            <i class="fas fa-star absolute top-1/2 -right-8 text-yellow-200 opacity-50"></i>
+        </div>
+
+        <div class="coming-soon-banner px-8 py-2 rounded-full mb-6">
+            <span class="tracking-widest uppercase font-semibold text-sm md:text-base gold-text">Coming Soon to Your Neighborhood</span>
+        </div>
+
+        <h1 class="text-5xl md:text-8xl font-bold gold-gradient mb-4">Tea on Wheels</h1>
+        <p class="max-w-2xl text-lg md:text-xl text-gray-400 font-light">
+            Magic is brewing. We're putting wheels on the finest tea experience to bring warmth, comfort, and a little sparkle to your daily commute.
+        </p>
+
+        <div class="mt-12 flex flex-col items-center">
+            <p class="text-xs uppercase tracking-[0.3em] mb-4 opacity-50">Follow the Journey</p>
+            <div class="flex space-x-6 text-2xl">
+                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fab fa-facebook-p"></i></a>
+                <a href="#" class="hover:text-amber-400 transition-colors"><i class="fab fa-whatsapp"></i></a>
+            </div>
+        </div>
+
+        <a href="#journey" class="absolute bottom-10 animate-bounce text-gold opacity-60">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </a>
+    </header>
+
+    <!-- The Progress Section -->
+    <section id="journey" class="py-24 px-6 max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4">Under Construction</h2>
+            <div class="w-24 h-1 bg-gold mx-auto rounded-full"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Shop Progress Card -->
+            <div class="tea-card rounded-2xl overflow-hidden p-4">
+                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+                    <!-- PLACEHOLDER FOR SHOP IMAGE -->
+                    <i class="fas fa-store text-5xl opacity-10 group-hover:scale-110 transition-transform"></i>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-white font-medium">Shop Image Placeholder</div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 gold-text">The Shop</h3>
+                <p class="text-sm text-gray-400">Our physical hub is getting a makeover. Soon to be the heart of our operations.</p>
+            </div>
+
+            <!-- Team Progress Card -->
+            <div class="tea-card rounded-2xl overflow-hidden p-4">
+                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+                    <!-- PLACEHOLDER FOR TEAM IMAGE -->
+                    <i class="fas fa-users text-5xl opacity-10 group-hover:scale-110 transition-transform"></i>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-white font-medium">Team Image Placeholder</div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 gold-text">The Team</h3>
+                <p class="text-sm text-gray-400">Meet the passionate brewers behind the wheels. We're dedicated to the perfect cup.</p>
+            </div>
+
+            <!-- Video Progress Card -->
+            <div class="tea-card rounded-2xl overflow-hidden p-4">
+                <div class="aspect-square bg-neutral-800 rounded-xl mb-4 flex items-center justify-center relative overflow-hidden group">
+                    <!-- PLACEHOLDER FOR VIDEO -->
+                    <i class="fas fa-play-circle text-5xl opacity-10 group-hover:scale-110 transition-transform"></i>
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 text-white font-medium text-center px-4">Video Teaser:<br>From Sketches to Steeping</div>
+                </div>
+                <h3 class="text-xl font-bold mb-2 gold-text">Watch us grow</h3>
+                <p class="text-sm text-gray-400">A short clip of our journey from a dream to a moving reality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section class="py-24 bg-[#120D08]">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <i class="fas fa-map-marker-alt text-4xl gold-text mb-6"></i>
+            <h2 class="text-4xl font-bold mb-6">First Stop Fixed!</h2>
+            <p class="text-xl text-gray-300 mb-8">
+                We've secured our primary location. While we are "on wheels," you can always find us parked at:
+            </p>
+            <div class="bg-white/5 p-8 rounded-3xl border border-white/10 inline-block">
+                <p class="text-2xl font-serif italic text-white">[Your Fixed Location Address Here]</p>
+                <p class="text-sm mt-4 text-gray-500 uppercase tracking-widest">Opening Hours To Be Announced</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/5 text-center">
+        <div class="mb-8">
+            <img src="WhatsApp Image 2026-03-24 at 7.40.51 PM.jpeg" alt="Tea on Wheels Small Logo" class="w-16 mx-auto opacity-50 grayscale hover:grayscale-0 transition-all">
+        </div>
+        <p class="text-gray-500 text-sm mb-4">&copy; 2026 Tea on Wheels. All rights reserved.</p>
+        <p class="text-xs text-gray-600">Brewed with Love & Precision</p>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
